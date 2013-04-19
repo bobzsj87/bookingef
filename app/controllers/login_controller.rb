@@ -6,6 +6,10 @@ class LoginController < ApplicationController
     end
   end
 
+  def today
+    redirect_to freebusy_path(:date=>DateTime.now.midnight.iso8601, :room=>params[:room])
+  end
+
   def create
     username = params[:username]
     password = params[:password]
@@ -15,9 +19,14 @@ class LoginController < ApplicationController
       cookies[:password] = {:value=>password, :expires=>expires}
       flash[:notice] = "Logged in"
       
-      redirect_to login_path
+      redirect_to params[:redirect]
     end
   end
 
+  def destory
+    cookies.delete :username
+    cookies.delete :password
+    redirect_to login_path
+  end
 
 end

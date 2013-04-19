@@ -1,12 +1,33 @@
+<div>
+  <%= select_tag :date, options_for_select(@daylist.map{|d| [d.strftime("%Y-%m-%d (%a)"), d]})%>
+</div>
+<hr/>
 <% @clist.each do |c| %>
   <% if c["FreeBusyStatus"] == 0 %>
-    <div class="well">
-      <%= c["StartTime"] %> to <%= c["EndTime"] %>
+    <div class="well alert alert-success">
+      Bookable: <%= c["StartTime"].strftime('%H:%M') %> to <%= c["EndTime"].strftime('%H:%M') %>
+      <%= link_to "Book", book_path(:room=>@room, :from=>c["StartTime"], :to=>c["EndTime"]), :class=>"btn btn-success" %>
     </div>
   <% else %>
-    <div class="well alert alert-success">
-      <%= c["StartTime"] %> to <%= c["EndTime"] %>
+    <div class="well">
+      Occupied: <%= c["StartTime"].strftime('%H:%M') %> to <%= c["EndTime"].strftime('%H:%M') %>
+      <% if c["Owner"].downcase == cookies[:username].downcase %>
+      <%= link_to "Cancel", "#", :class=>"btn btn-danger" %>
+    <%end%>
     </div>
   <% end %>
   
 <% end %>
+<% content_for :bottom_js do%>
+  <script>
+    $(document).ready(function(){
+      $('#date').change(function(){
+        var p = "<%= freebusy_path(:date=>"", :room=>params[:room]) %>";
+        window.location = p + $(this).val();
+      })
+    })
+  </script>
+<%end%>
+<% content_for :title do %>
+  <%= @name %>
+<%end%>

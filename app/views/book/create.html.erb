@@ -1,0 +1,19 @@
+<%= form_tag(book_confirm_path) do %>
+  From:
+  <br/>
+  <%= select_tag :starttime, options_for_select(@clist.map{|c| [c.strftime('%H:%M'), c]}) %>
+  <br/>
+  To:  
+  <br/>
+  <%= select_tag :endtime, options_for_select(@clist.map{|c| [c.strftime('%H:%M'), c]}) %>
+  <br/>
+  <%= hidden_field_tag :room, @room %>
+  Subject:
+  <br/>
+  <%= text_field_tag :subject %>
+  <br/>
+  <%= submit_tag "Book", :class=>"btn btn-success" %>
+<%end%>
+<% content_for :title do %>
+  Book
+<%end%>

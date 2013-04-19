@@ -15,22 +15,29 @@
 @media (min-width: 1200px) {
   body{padding-top:60px;}
 }
+
+.brand
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+}
   </style>
 
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
+          <div class="brand">
+            <%= content_for :title if content_for :title %>
+          </div>
           <ul class="nav">
-            <p class="navbar-text"><%= content_for?(:title) ? yield(:title) : "" %></p>
-          </ul>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
             <li>
-            <%= link_to "Logout", "#" %>
+            <%= link_to "Logout", logout_path %>
             </li>
-            </ul>
-          </div><!--/.nav-collapse -->
+          </ul>
       </div>
     </div>
 
@@ -62,7 +69,7 @@
     <hr/>
     <div class="container" style="padding-bottom:10px">
       <footer>
-        <p class="pull-left">&copy; Signum International S.a r.l Luxembourg Luzern Branch, EF英孚教育集团旗下公司，版权所有。</p>
+        &copy;2013 EF Labs
       </footer>
     </div> <!-- /container -->
   </div> <!-- end of footer -->
