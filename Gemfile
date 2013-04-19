@@ -39,10 +39,4 @@ gem 'unicorn'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'ruby-debug'
-#
-# gem 'less-rails'
-# gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git"
-
-# admin utility
+# gem 'viewpoint', "1.0.0.beta.1"

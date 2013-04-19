@@ -1,0 +1,12 @@
+<% @clist.each do |c| %>
+  <% if c["FreeBusyStatus"] == 0 %>
+    <div class="well">
+      <%= c["StartTime"] %> to <%= c["EndTime"] %>
+    </div>
+  <% else %>
+    <div class="well alert alert-success">
+      <%= c["StartTime"] %> to <%= c["EndTime"] %>
+    </div>
+  <% end %>
+  
+<% end %>

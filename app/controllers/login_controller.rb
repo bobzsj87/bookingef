@@ -1,4 +1,5 @@
 class LoginController < ApplicationController
+  skip_filter :is_login
   def new
     respond_to do |format|
       format.html

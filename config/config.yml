@@ -1,4 +1,5 @@
 defaults: &defaults
+  service_url: http://ef-numen.ef.com/bookhandler.ashx
 
 development:
   <<: *defaults

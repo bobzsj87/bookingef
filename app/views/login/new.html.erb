@@ -1,5 +1,5 @@
 <%= form_tag do %>
-  <p><%= email_field_tag :username, "", :placeholder=>"Username" %></p>
+  <p><%= text_field_tag :username, "", :placeholder=>"Username" %></p>
   <p><%= password_field_tag :password, "", :placeholder=>"Password" %></p>
   <p><%= check_box_tag :remember_me %> Remember me</p>
   <p><%= submit_tag "Login", :class=>"btn btn-primary" %></p>
