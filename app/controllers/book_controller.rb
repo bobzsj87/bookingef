@@ -14,6 +14,8 @@ class BookController < ApplicationController
           c = list[i]
           c["StartTime"] = DateTime.parse(c["StartTime"])
           c["EndTime"] = DateTime.parse(c["EndTime"])
+          next if c["StartTime"] < @df
+           
           if c["StartTime"] > lastEnd 
             cnew = {"StartTime"=>lastEnd, "EndTime"=>c["StartTime"], "FreeBusyStatus"=>0}
             @clist << cnew

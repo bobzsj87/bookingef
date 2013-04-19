@@ -4,16 +4,16 @@
 <hr/>
 <% @clist.each do |c| %>
   <% if c["FreeBusyStatus"] == 0 %>
-    <div class="well alert alert-success">
+    <div class="well alert alert-success timecell">
       Bookable: <%= c["StartTime"].strftime('%H:%M') %> to <%= c["EndTime"].strftime('%H:%M') %>
-      <%= link_to "Book", book_path(:room=>@room, :from=>c["StartTime"], :to=>c["EndTime"]), :class=>"btn btn-success" %>
+      <%= link_to "Book", book_path(:room=>@room, :from=>c["StartTime"], :to=>c["EndTime"]), :class=>"btn btn-success pull-right" %>
     </div>
   <% else %>
-    <div class="well">
-      Occupied: <%= c["StartTime"].strftime('%H:%M') %> to <%= c["EndTime"].strftime('%H:%M') %>
-      <% if c["Owner"].downcase == cookies[:username].downcase %>
-      <%= link_to "Cancel", "#", :class=>"btn btn-danger" %>
-    <%end%>
+    <div class="well timecell">
+      <%= c["Owner"] || "Occupied" %>, <%= c["StartTime"].strftime('%H:%M') %> to <%= c["EndTime"].strftime('%H:%M') %>
+      <% if c["Owner"] && c["Owner"].downcase == cookies[:username].downcase %>
+        <%= link_to "X", "#", :class=>"btn btn-danger pull-right" %>
+      <%end%>
     </div>
   <% end %>
   
@@ -30,4 +30,9 @@
 <%end%>
 <% content_for :title do %>
   <%= @name %>
+<%end%>
+<% content_for :head_css do %>
+  <style>
+.timecell{min-height:30px;}
+  </style>
 <%end%>

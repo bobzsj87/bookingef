@@ -10,21 +10,21 @@
       'application', 
       "http://lib.sinaapp.com/js/bootstrap/2.2.1/css/bootstrap-responsive.min.css", :media => "all" %>
     <%= yield(:head_css) if content_for?(:head_css) %>
-  </head>
   <style>
-@media (min-width: 1200px) {
-  body{padding-top:60px;}
-}
+      @media (min-width: 1200px) {
+        body{padding-top:60px;}
+      }
 
-.brand
-{
-    position: absolute;
-    width: 100%;
-    left: 0;
-    text-align: center;
-    margin: auto;
-}
+      .brand
+      {
+          position: absolute;
+          width: 100%;
+          left: 0;
+          text-align: center;
+          margin: auto;
+      }
   </style>
+  </head>
 
   <body>
 
